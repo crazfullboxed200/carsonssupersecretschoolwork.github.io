@@ -3,45 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Guac Access</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<title>My Proxy</title>
 <style>
-  body {
-    background-color: #121212;
-    color: #fff;
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 3em;
-    margin-bottom: 1em;
-  }
-
-  .button {
-    background-color: #1f80e0;
-    color: white;
-    padding: 1em 2em;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    transition: background 0.3s ease;
-  }
-
-  .button:hover {
-    background-color: #1565c0;
-  }
+    body {
+        background-color: #121212;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 50px;
+        min-height: 100vh;
+        margin: 0;
+    }
+    h1 {
+        margin-bottom: 20px;
+    }
+    input, button {
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+    }
+    input {
+        width: 300px;
+    }
+    button {
+        background-color: #6c5ce7;
+        color: white;
+        cursor: pointer;
+        min-width: 150px;
+    }
+    button:hover {
+        background-color: #341f97;
+    }
+    .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
 </style>
 </head>
 <body>
-  <h1>Access Guacamole</h1>
-  <a class="button" href="https://guac.carsonssupersecretschoolwork.work">Open Guac</a>
+<h1>My Proxy</h1>
+
+<!-- URL input -->
+<input id="url" type="text" placeholder="https://example.com">
+<button onclick="go()">Go</button>
+
+<!-- Quick-access buttons -->
+<div class="button-row">
+    <button onclick="visit('https://guac.carsonssupersecretschoolwork.work')">Guacamole</button>
+    <button onclick="visit('https://www.youtube.com')">YouTube</button>
+    <button onclick="visit('https://www.tiktok.com')">TikTok</button>
+    <button onclick="visit('https://www.google.com')">Google</button>
+</div>
+
+<script>
+const proxyBase = 'http://54.211.95.185:3000/?url=';
+
+function go() {
+    const site = document.getElementById('url').value;
+    if(site) {
+        // Send through VPS proxy
+        window.location.href = proxyBase + encodeURIComponent(site);
+    }
+}
+
+function visit(url) {
+    // Quick-access buttons also go through proxy
+    window.location.href = proxyBase + encodeURIComponent(url);
+}
+</script>
 </body>
 </html>
-
