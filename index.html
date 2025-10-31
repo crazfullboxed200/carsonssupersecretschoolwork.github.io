@@ -56,26 +56,32 @@
 
 <!-- Quick-access buttons -->
 <div class="button-row">
-    <button onclick="visit('https://guac.carsonssupersecretschoolwork.work')">Guacamole</button>
-    <button onclick="visit('https://www.youtube.com')">YouTube</button>
-    <button onclick="visit('https://www.tiktok.com')">TikTok</button>
-    <button onclick="visit('https://www.google.com')">Google</button>
+    <button onclick="visitGuac()">Guacamole</button>
+    <button onclick="visitProxy('https://www.youtube.com')">YouTube</button>
+    <button onclick="visitProxy('https://www.tiktok.com')">TikTok</button>
+    <button onclick="visitProxy('https://www.google.com')">Google</button>
 </div>
 
 <script>
 const proxyBase = 'http://54.211.95.185:3000/?url=';
 
+// Input box for blocked sites → goes through proxy
 function go() {
     const site = document.getElementById('url').value;
     if(site) {
-        // Send through VPS proxy
         window.location.href = proxyBase + encodeURIComponent(site);
     }
 }
 
-function visit(url) {
-    // Quick-access buttons also go through proxy
+// Quick-access buttons
+function visitProxy(url) {
+    // Routed through VPS proxy
     window.location.href = proxyBase + encodeURIComponent(url);
+}
+
+function visitGuac() {
+    // Direct access to Guac
+    window.location.href = 'https://guac.carsonssupersecretschoolwork.work';
 }
 </script>
 </body>
