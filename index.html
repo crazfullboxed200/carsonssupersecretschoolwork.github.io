@@ -4,84 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Proxy</title>
+
 <style>
-    body {
-        background-color: #121212;
-        color: #fff;
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 50px;
-        min-height: 100vh;
-        margin: 0;
-    }
-    h1 {
-        margin-bottom: 20px;
-    }
-    input, button {
-        padding: 10px;
-        margin: 5px;
-        border-radius: 5px;
-        border: none;
-        font-size: 16px;
-    }
-    input {
-        width: 300px;
-    }
-    button {
-        background-color: #6c5ce7;
-        color: white;
-        cursor: pointer;
-        min-width: 150px;
-    }
-    button:hover {
-        background-color: #341f97;
-    }
-    .button-row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 20px;
-    }
+body {
+    background-color: #121212;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    min-height: 100vh;
+    margin: 0;
+}
+h1 { margin-bottom: 20px; }
+input, button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+input { width: 300px; }
+button {
+    background-color: #6c5ce7;
+    color: white;
+    cursor: pointer;
+    min-width: 150px;
+}
+button:hover { background-color: #341f97; }
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
 </style>
 </head>
+
 <body>
 <h1>My Proxy</h1>
 
-<!-- URL input -->
 <input id="url" type="text" placeholder="https://example.com">
 <button onclick="go()">Go</button>
 
-<!-- Quick-access buttons -->
 <div class="button-row">
     <button onclick="visitGuac()">Guacamole</button>
     <button onclick="visitProxy('https://www.youtube.com')">YouTube</button>
     <button onclick="visitProxy('https://www.tiktok.com')">TikTok</button>
     <button onclick="visitProxy('https://www.google.com')">Google</button>
-    <button onclick="('https://puppeteer.carsonssupersecretschoolwork.work/fetch?url=https://google.com')">GoogleProxy</button>
+    <button onclick="visitProxy('https://google.com')">Google (Proxy)</button>
 </div>
 
 <script>
-const proxyBase = 'https://puppeteer.carsonssupersecretschoolwork.work/?url=';
+const proxyBase = 'https://puppeteer.carsonssupersecretschoolwork.work/fetch?url=';
 
-// Input box for blocked sites → goes through proxy
-function go() {
-    const site = document.getElementById('url').value;
-    if(site) {
-        window.location.href = proxyBase + encodeURIComponent(site);
+function normalizeUrl(url) {
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        return 'https://' + url;
     }
+    return url;
 }
 
-// Quick-access buttons
+function go() {
+    let site = document.getElementById('url').value.trim();
+    if (!site) return;
+
+    site = normalizeUrl(site);
+    window.location.href = proxyBase + encodeURIComponent(site);
+}
+
 function visitProxy(url) {
-    // Routed through VPS proxy
     window.location.href = proxyBase + encodeURIComponent(url);
 }
 
 function visitGuac() {
-    // Direct access to Guac
     window.location.href = 'https://guac.carsonssupersecretschoolwork.work';
 }
 </script>
