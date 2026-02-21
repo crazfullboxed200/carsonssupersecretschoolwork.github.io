@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Proxy</title>
+<title>Carson's Games</title>
 
 <style>
 body {
@@ -43,40 +43,15 @@ button:hover { background-color: #341f97; }
 </head>
 
 <body>
-<h1>My Proxy</h1>
+<h1>Carson's Games</h1>
 
-<input id="url" type="text" placeholder="https://example.com">
-<button onclick="go()">Go</button>
 
 <div class="button-row">
     <button onclick="visitGuac()">Guacamole</button>
-    <button onclick="visitProxy('https://www.youtube.com')">YouTube</button>
-    <button onclick="visitProxy('https://www.tiktok.com')">TikTok</button>
-    <button onclick="visitProxy('https://www.google.com')">Google</button>
-    <button onclick="visitProxy('https://google.com')">Google (Proxy)</button>
+    
 </div>
 
 <script>
-const proxyBase = 'https://puppeteer.carsonssupersecretschoolwork.work/fetch?url=';
-
-function normalizeUrl(url) {
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        return 'https://' + url;
-    }
-    return url;
-}
-
-function go() {
-    let site = document.getElementById('url').value.trim();
-    if (!site) return;
-
-    site = normalizeUrl(site);
-    window.location.href = proxyBase + encodeURIComponent(site);
-}
-
-function visitProxy(url) {
-    window.location.href = proxyBase + encodeURIComponent(url);
-}
 
 function visitGuac() {
     window.location.href = 'https://guac.carsonssupersecretschoolwork.work';
