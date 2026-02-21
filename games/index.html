@@ -1,9 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Games</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carson's Games - Game Library</title>
+
+<style>
+body {
+    background-color: #121212;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    min-height: 100vh;
+    margin: 0;
+}
+h1 { margin-bottom: 20px; }
+
+button {
+    padding: 12px;
+    margin: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    background-color: #6c5ce7;
+    color: white;
+    cursor: pointer;
+    min-width: 200px;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background-color: #341f97;
+    transform: translateY(-2px);
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+</style>
 </head>
+
 <body>
-  <h1>Games Section</h1>
+
+<h1>Game Library</h1>
+
+<div class="button-row">
+    <button onclick="visitGame1()">Minesweeper</button>
+    <button onclick="visitGame2()">Spider Solitare</button>
+    <button onclick="visitGame3()">GTA Vice City</button>
+</div>
+
+<br>
+
+<button onclick="goHome()">⬅ Back to Home</button>
+
+<script>
+function visitGame1() {
+    window.location.href = 'https://minecraft.net';
+}
+
+function visitGame2() {
+    window.location.href = 'https://roblox.com';
+}
+
+function visitGame3() {
+    window.location.href = 'https://counter-strike.net';
+}
+
+function goHome() {
+    window.location.href = '/';
+}
+</script>
+
 </body>
 </html>
